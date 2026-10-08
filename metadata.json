@@ -1,0 +1,30 @@
+{
+  "name": "zebrad_ui",
+  "display_name": "Zcash Node",
+  "version": "0.1.0",
+  "type": "ui_qml",
+  "interface": "universal",
+  "category": "wallet",
+  "description": "Run and manage a local Zcash node (Zebra): sync progress, peers, settings, the ports it opens to other programs, and the node log.",
+  "author": "Logos Core Team",
+  "main": "zebrad_ui_plugin",
+  "icon": "src/icons/zebrad.png",
+  "view": "qml/Main.qml",
+  "dependencies": ["zebrad_module"],
+  "provides": [
+    { "intent": "zcash.node.configure",
+      "params": [ { "name": "network", "type": "string", "required": false,
+                    "description": "mainnet or testnet; the node to show" } ],
+      "handoff": true }
+  ],
+  "codegen": {
+    "rep": "src/ZebradBackend.rep",
+    "backend_class": "ZebradBackend",
+    "backend_header": "ZebradBackend.h"
+  },
+  "nix": {
+    "packages": { "build": [], "runtime": ["qt6.qtdeclarative"] },
+    "external_libraries": [],
+    "cmake": { "find_packages": [], "extra_sources": [] }
+  }
+}

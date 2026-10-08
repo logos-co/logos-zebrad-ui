@@ -1,0 +1,20 @@
+#include <QVariantMap>
+
+// No secret crosses here: the JSON-RPC cookie stays in the node's cache directory. ci.yml checks it.
+class ZebradBackend
+{
+    PROP(QString state READONLY)          // stopped|starting|running|stopping|failed|unavailable
+    PROP(QString network READONLY)        // the network the view shows and would start
+    PROP(QString networksJson READONLY)   // mainnet and testnet, and regtest when the module offers it
+    PROP(QString statusJson READONLY)     // status(), or the last zebradStateChanged payload
+    PROP(QString configJson READONLY)     // getConfig(network); "" while a network switch loads
+    PROP(QString logText READONLY)
+    PROP(QString lastError READONLY)
+    PROP(bool busy READONLY)              // start or stop in flight
+
+    SLOT(void selectNetwork(QString network))
+    SLOT(void saveConfig(QString configJson))
+    SLOT(void start())
+    SLOT(void stop())
+    SLOT(void refresh())
+}
