@@ -39,7 +39,10 @@ Item {
         if (peerCount < root.minPeers) return "waiting"
         return "syncing"
     }
-    readonly property string sync: running ? syncState(height_, estimated, peers) : ""
+    // Regtest blocks carry 2011 timestamps, so the estimate runs millions ahead of a chain
+    // that has no network to catch up with; the module reports it 100% synced.
+    readonly property bool regtest: ready && backend.network === "regtest"
+    readonly property string sync: !running ? "" : regtest ? "synced" : syncState(height_, estimated, peers)
     readonly property bool synced: sync === "synced"
     readonly property bool estimateKnown: height_ >= 0 && estimated > 0
     readonly property real progress: synced ? 1 : (estimateKnown ? Math.min(1, height_ / estimated) : 0)
@@ -202,7 +205,7 @@ Item {
                             textFormat: Text.PlainText
                             font.weight: Theme.typography.weightBold
                             text: root.running ? "Height " + root.fmtNum(root.height_)
-                                                 + (root.estimated > 0 ? " / " + root.fmtNum(root.estimated) : "")
+                                                 + (root.estimated > 0 && !root.regtest ? " / " + root.fmtNum(root.estimated) : "")
                                   : root.nodeState === "starting" ? "Starting…"
                                   : root.nodeState === "stopping" ? "Stopping…"
                                   : root.nodeState === "" ? "Checking…" : "Not running"
