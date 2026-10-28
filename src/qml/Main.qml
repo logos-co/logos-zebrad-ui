@@ -76,7 +76,7 @@ Item {
     readonly property var openPorts: {
         var e = active && st.rpcExposed ? st.rpcExposed : ({})
         var out = []
-        for (var k in e)
+        for (const k in e)
             if (typeof e[k] === "string" && e[k] !== "") out.push({ key: k, name: portNames[k] || k, addr: e[k] })
         return out
     }
