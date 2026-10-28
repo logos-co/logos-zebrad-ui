@@ -76,7 +76,7 @@ Item {
     readonly property var openPorts: {
         var e = active && st.rpcExposed ? st.rpcExposed : ({})
         var out = []
-        for (var k in e)
+        for (const k in e)
             if (typeof e[k] === "string" && e[k] !== "") out.push({ key: k, name: portNames[k] || k, addr: e[k] })
         return out
     }
@@ -175,7 +175,7 @@ Item {
             RowLayout {
                 Layout.fillWidth: true
                 spacing: 12
-                LogosText { text: "Zcash node"; font.pixelSize: 22; font.weight: Theme.typography.weightBold }
+                LogosText { text: "Zcash Zebra Node"; font.pixelSize: 22; font.weight: Theme.typography.weightBold }
                 LogosBadge { objectName: "stateBadge"; text: root.nodeState || "checking"; color: root.stateColour(root.nodeState) }
                 Item { Layout.fillWidth: true }
                 LogosText { text: "Network"; color: Theme.palette.textTertiary }
