@@ -1,8 +1,9 @@
 # logos-zebrad-ui
 
-`zebrad_ui` manages the Zcash node (Zebra) that `zebrad_module` runs in-process: start and
-stop it, watch it sync, change its settings, choose what it opens to other programs, and read
-its log. Built on the Logos Design System, like the Monero node app it is copied from.
+`zebrad_ui` is the Zcash Zebra Node app. It manages the Zcash node (Zebra) that `zebrad_module`
+runs in-process: start and stop it, watch it sync, change its settings, choose what it opens to
+other programs, and read its log. Built on the Logos Design System, like the Monero node app it
+is copied from.
 
 ```bash
 nix build .#install        # -dev variant, for logos-standalone-app

@@ -1,6 +1,6 @@
 {
   "name": "zebrad_ui",
-  "display_name": "Zcash Node",
+  "display_name": "Zcash Zebra Node",
   "version": "0.1.0",
   "type": "ui_qml",
   "interface": "universal",
