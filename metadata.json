@@ -1,7 +1,7 @@
 {
   "name": "zebrad_ui",
   "display_name": "Zcash Zebra Node",
-  "version": "0.1.0",
+  "version": "0.2.0",
   "type": "ui_qml",
   "interface": "universal",
   "category": "wallet",
@@ -10,7 +10,9 @@
   "main": "zebrad_ui_plugin",
   "icon": "src/icons/zebrad.png",
   "view": "qml/Main.qml",
-  "dependencies": ["zebrad_module"],
+  "dependencies": [
+    { "name": "zebrad_module", "version": "~0.2.0" }
+  ],
   "provides": [
     { "intent": "zcash.node.configure",
       "params": [ { "name": "network", "type": "string", "required": false,
